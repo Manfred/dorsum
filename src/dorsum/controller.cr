@@ -38,6 +38,7 @@ module Dorsum
             end
           when "NOTICE"
             Log.info { message.message }
+          when "PART"
           when "PING"
             client.puts("PONG #{message.message}")
           when "PONG"
