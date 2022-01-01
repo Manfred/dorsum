@@ -7,7 +7,16 @@ module Dorsum
       getter client : Dorsum::Client
       getter log : Hash(String, Array(Time::Span))
 
-      HYPERS    = %w[OMEGALUL OOOO ratJAM horseCrungo Clap Peepo]
+      HYPERS = %w[
+        Clap
+        D:
+        OMEGALUL
+        OOOO
+        Peepo
+        PoroSad
+        horseCrungo
+        ratJAM
+      ]
       HYPE      = Time::Span.new(seconds: 10)
       COOLDOWN  = Time::Span.new(seconds: 60)
       THRESHOLD = 1
