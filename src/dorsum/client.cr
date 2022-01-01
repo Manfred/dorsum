@@ -9,7 +9,7 @@ module Dorsum
 
     def connect
       tcp_socket = TCPSocket.new(HOST, PORT)
-      tcp_socket.read_timeout = 120
+      tcp_socket.read_timeout = 15
       tcp_socket.write_timeout = 5
       tcp_socket.keepalive = true
       @socket = OpenSSL::SSL::Socket::Client.new(tcp_socket)

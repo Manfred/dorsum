@@ -11,9 +11,14 @@ module Dorsum
 
     def run
       hype = Dorsum::Commands::Hype.new(client)
+      ping = Dorsum::Commands::Ping.new(client)
       Dorsum::Commands::Authenticate.new(client, config).run
       loop do
-        line = client.gets
+        begin
+          line = client.gets
+        rescue e : IO::TimeoutError
+          ping.run
+        end
         if line
           message = Message.new(line)
           case message.command
@@ -35,6 +40,7 @@ module Dorsum
             Log.info { message.message }
           when "PING"
             client.puts("PONG #{message.message}")
+          when "PONG"
           when "PRIVMSG"
             Log.info { "\e[38;5;#{message.ansi_code}m#{message.badge} #{message.display_name}:\e[0m #{message.message}" }
             hype.run(message)
