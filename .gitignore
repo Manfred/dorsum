@@ -1,0 +1,6 @@
+*.dwarf
+/build
+/dorsum
+/lib
+/shard.lock
+/spec/tmp
