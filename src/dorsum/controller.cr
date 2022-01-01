@@ -31,6 +31,8 @@ module Dorsum
             if message.source && message.source.as(String).starts_with?(":#{config.username}!")
               Log.info { "Joined #{message.arguments}!" }
             end
+          when "NOTICE"
+            Log.info { message.message }
           when "PING"
             client.puts("PONG #{message.message}")
           when "PRIVMSG"
