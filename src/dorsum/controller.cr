@@ -50,6 +50,9 @@ module Dorsum
             return
           when "ROOMSTATE"
           when "USERSTATE"
+          when "USERNOTICE"
+            content = message.message ? ": #{message.message}" : ""
+            Log.info { "\e[38;5;#{message.ansi_code}m#{message.message_id}: #{message.display_name}#{content}\e[0m" }
           else
             Log.info { "Not implemented: #{message.command}" }
           end
