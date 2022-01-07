@@ -29,13 +29,14 @@ module Dorsum
     end
 
     private def run_forever
-      loop { run }
+      api = Dorsum::Api::Client.new(config)
+      loop { run(api) }
     end
 
-    private def run
+    private def run(api : Dorsum::Api::Client)
       client = Dorsum::Client.new
       client.connect
-      Dorsum::Controller.new(client, config, context).run
+      Dorsum::Controller.new(client, api, config, context).run
     rescue e : IO::TimeoutError
       Log.warn { e.message }
     end

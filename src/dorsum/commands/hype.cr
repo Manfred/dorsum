@@ -19,7 +19,7 @@ module Dorsum
       ]
       HYPE      = Time::Span.new(seconds: 20)
       COOLDOWN  = Time::Span.new(seconds: 60)
-      THRESHOLD = 2
+      THRESHOLD = 3
 
       def initialize(@client)
         @log = {} of String => Array(Time::Span)

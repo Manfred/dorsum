@@ -12,7 +12,7 @@ module Dorsum
 
     def initialize(data : YAML::Any)
       @data = {} of String => YAML::Any
-      %w[username password].each do |attribute|
+      %w[username password client_id client_secret].each do |attribute|
         value = data[attribute]?
         @data[attribute] = value if value
       end
@@ -32,6 +32,22 @@ module Dorsum
 
     def password=(password : String)
       @data["password"] = YAML::Any.new(password)
+    end
+
+    def client_id
+      @data["client_id"]
+    end
+
+    def client_id=(client_id : String)
+      @data["client_id"] = YAML::Any.new(client_id)
+    end
+
+    def client_secret
+      @data["client_secret"]
+    end
+
+    def client_secret=(client_secret : String)
+      @data["client_secret"] = YAML::Any.new(client_secret)
     end
 
     def save(path = PATH)

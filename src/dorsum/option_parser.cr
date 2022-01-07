@@ -24,6 +24,20 @@ module Dorsum
               config.password = password
             end
           end
+          parser.on("--client-id CLIENT-ID", "Twitch application client ID") do |client_id|
+            if client_id.empty?
+              context.errors << "Please specify a Twitch application client ID."
+            else
+              config.client_id = client_id
+            end
+          end
+          parser.on("--client-secret CLIENT-SECRET", "Twitch application client secret") do |client_id|
+            if client_id.empty?
+              context.errors << "Please specify a Twitch application client secret."
+            else
+              config.client_id = client_id
+            end
+          end
         end
 
         parser.on("--channel CHANNEL", "Join the channel.") do |channel|

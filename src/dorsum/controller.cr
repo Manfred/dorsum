@@ -3,16 +3,22 @@ require "log"
 module Dorsum
   class Controller
     property client : Dorsum::Client
+    property api : Dorsum::Api::Client
     property config : Dorsum::Config
     property context : Dorsum::Context
 
-    def initialize(@client, @config, @context)
+    def initialize(@client, @api, @config, @context)
     end
 
     def run
       hype = Dorsum::Commands::Hype.new(client)
       ping = Dorsum::Commands::Ping.new(client)
       Dorsum::Commands::Authenticate.new(client, config).run
+
+      broadcaster_id = api.broadcaster_id(context.channel)
+      exit unless broadcaster_id
+      title = Dorsum::Commands::Title.new(client, api, broadcaster_id)
+
       loop do
         begin
           line = client.gets
@@ -45,6 +51,7 @@ module Dorsum
           when "PRIVMSG"
             Log.info { "\e[38;5;#{message.ansi_code}m#{message.badge} #{message.display_name}:\e[0m #{message.message}" }
             hype.run(message)
+            title.run(message)
           when "RECONNECT"
             Log.warn { "Server asked us to reconnect" }
             return
