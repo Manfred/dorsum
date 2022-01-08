@@ -22,7 +22,8 @@ module Dorsum
           title = channel["title"].as_s
           return unless title
 
-          client.puts("PRIVMSG #{message.arguments} :@#{message.display_name} #{title}")
+          title = title.empty? ? "no title right now…" : title
+          client.puts("PRIVMSG #{message.arguments} :@#{message.display_name} MrDestructoid #{title}")
         end
 
         if content.starts_with?("!game")
@@ -32,7 +33,8 @@ module Dorsum
           game_name = channel["game_name"].as_s
           return unless game_name
 
-          client.puts("PRIVMSG #{message.arguments} :@#{message.display_name} #{game_name}")
+          game_name = game_name.empty? ? "no game right now…" : game_name
+          client.puts("PRIVMSG #{message.arguments} :@#{message.display_name} MrDestructoid #{game_name}")
         end
       end
     end
