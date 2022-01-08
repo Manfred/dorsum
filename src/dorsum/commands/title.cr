@@ -19,15 +19,10 @@ module Dorsum
       def run(message)
         return unless message.message
 
-        if cooldown?
-          Log.info { "Cooldown #{Dorsum::Message.formatted_time_span(since)}" }
-          return
-        else
-          @last = Time.monotonic
-        end
-
         content = message.message.as(String)
         if content.starts_with?("!title")
+          return if cooldown?
+
           channel = api.channel(broadcaster_id)
           return unless channel
 
@@ -39,6 +34,8 @@ module Dorsum
         end
 
         if content.starts_with?("!game")
+          return if cooldown?
+
           channel = api.channel(broadcaster_id)
           return unless channel
 
@@ -54,8 +51,18 @@ module Dorsum
         Time.monotonic - last
       end
 
-      private def cooldown?
+      private def on_cooldown?
         since < COOLDOWN
+      end
+
+      private def cooldown?
+        if on_cooldown?
+          Log.info { "Cooldown #{Dorsum::Message.formatted_time_span(since)}" }
+          true
+        else
+          @last = Time.monotonic
+          false
+        end
       end
     end
   end
