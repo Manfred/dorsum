@@ -17,7 +17,7 @@ module Dorsum
         horseCrungo
         ratJAM
       ]
-      HYPE      = Time::Span.new(seconds: 20)
+      HYPE      = Time::Span.new(seconds: 5)
       COOLDOWN  = Time::Span.new(seconds: 60)
       THRESHOLD = 3
 

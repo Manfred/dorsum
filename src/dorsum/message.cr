@@ -68,14 +68,18 @@ module Dorsum
     end
 
     def formatted_ban_duration
+      self.class.formatted_time_span(Time::Span.new(seconds: ban_duration.to_i))
+    rescue KeyError
+      "permanent"
+    end
+
+    def self.formatted_time_span(span)
       formatted = ""
-      span = Time::Span.new(seconds: ban_duration.to_i)
+      span = Time::Span.new(seconds: span.to_i)
       formatted += "#{span.hours}h" if span.hours > 0
       formatted += "#{span.minutes}m" if span.minutes > 0
       formatted += "#{span.seconds}s" if span.seconds > 0
       formatted
-    rescue KeyError
-      "permanent"
     end
 
     private def any_badge?(badge : String)
