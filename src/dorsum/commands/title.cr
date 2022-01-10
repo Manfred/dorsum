@@ -5,6 +5,13 @@ module Dorsum
   module Commands
     class Title
       COOLDOWN = Time::Span.new(seconds: 90)
+      MOTES    = %w[
+        MrDestructoid
+        FeelsAmazingMan
+        HolidayPresent
+        PokGengar
+        🤖
+      ]
 
       getter client : Dorsum::Client
       getter api : Dorsum::Api::Client
@@ -29,8 +36,9 @@ module Dorsum
           title = channel["title"].as_s
           return unless title
 
+          mote = MOTES.sample
           title = title.empty? ? "no title right now…" : title
-          client.puts("PRIVMSG #{message.arguments} :@#{message.display_name} MrDestructoid #{title}")
+          client.puts("PRIVMSG #{message.arguments} :@#{message.display_name} #{mote} #{title}")
         end
 
         if content.starts_with?("!game")
@@ -42,8 +50,9 @@ module Dorsum
           game_name = channel["game_name"].as_s
           return unless game_name
 
+          mote = MOTES.sample
           game_name = game_name.empty? ? "no game right now…" : game_name
-          client.puts("PRIVMSG #{message.arguments} :@#{message.display_name} MrDestructoid #{game_name}")
+          client.puts("PRIVMSG #{message.arguments} :@#{message.display_name} #{mote} #{game_name}")
         end
       end
 
