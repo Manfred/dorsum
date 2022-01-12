@@ -21,7 +21,12 @@ module Dorsum
           {"login" => name}
         )
         if response.status_code >= 200 && response.status_code < 300
-          JSON.parse(response.body)["data"][0]["id"].as_s
+          data = JSON.parse(response.body)
+          if data["data"].as_a.empty?
+            Log.fatal { "Can't find broadcaster with account name `#{name}'" }
+          else
+            data["data"][0]["id"].as_s
+          end
         end
       end
 
