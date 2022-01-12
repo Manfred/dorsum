@@ -1,3 +1,5 @@
+require "log"
+
 module Dorsum
   class Message
     class InvalidMessage < Exception; end
@@ -71,6 +73,10 @@ module Dorsum
       self.class.formatted_time_span(Time::Span.new(seconds: ban_duration.to_i))
     rescue KeyError
       "permanent"
+    end
+
+    def write_to_log
+      Log.info { "\e[38;5;#{ansi_code}m#{badge} #{display_name}:\e[0m #{message}" }
     end
 
     def self.formatted_time_span(span)

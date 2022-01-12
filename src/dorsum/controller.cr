@@ -11,7 +11,7 @@ module Dorsum
     end
 
     def run
-      hype = Dorsum::Commands::Hype.new(client)
+      # hype = Dorsum::Commands::Hype.new(client)
       ping = Dorsum::Commands::Ping.new(client)
       Dorsum::Commands::Authenticate.new(client, config).run
 
@@ -49,8 +49,7 @@ module Dorsum
             client.puts("PONG #{message.message}")
           when "PONG"
           when "PRIVMSG"
-            Log.info { "\e[38;5;#{message.ansi_code}m#{message.badge} #{message.display_name}:\e[0m #{message.message}" }
-            hype.run(message)
+            # hype.run(message)
             title.run(message)
           when "RECONNECT"
             Log.warn { "Server asked us to reconnect" }

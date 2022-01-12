@@ -36,6 +36,8 @@ module Dorsum
           title = channel["title"].as_s
           return unless title
 
+          message.write_to_log
+
           mote = MOTES.sample
           title = title.empty? ? "no title right now…" : title
           client.puts("PRIVMSG #{message.arguments} :@#{message.display_name} #{mote} #{title}")
@@ -49,6 +51,8 @@ module Dorsum
 
           game_name = channel["game_name"].as_s
           return unless game_name
+
+          message.write_to_log
 
           mote = MOTES.sample
           game_name = game_name.empty? ? "no game right now…" : game_name
