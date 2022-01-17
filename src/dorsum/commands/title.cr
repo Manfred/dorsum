@@ -10,7 +10,11 @@ module Dorsum
         FeelsAmazingMan
         HolidayPresent
         PokGengar
+        runSadCat
+        CHEESED
+        GruW
         🤖
+        🥫
       ]
 
       getter client : Dorsum::Connection
