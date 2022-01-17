@@ -1,3 +1,8 @@
 name: dorsum
 version: 0.0.1
 license: MIT
+
+development_dependencies:
+  webmock:
+    github: manastech/webmock.cr
+    branch: master

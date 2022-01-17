@@ -13,7 +13,7 @@ module Dorsum
         🤖
       ]
 
-      getter client : Dorsum::Client
+      getter client : Dorsum::Connection
       getter api : Dorsum::Api::Client
       getter broadcaster_id : String
 

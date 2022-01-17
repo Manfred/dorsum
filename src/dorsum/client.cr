@@ -1,9 +1,10 @@
 require "log"
 require "socket"
 require "openssl"
+require "./connection"
 
 module Dorsum
-  class Client
+  class Client < Dorsum::Connection
     HOST = "irc.chat.twitch.tv"
     PORT = 6697_u16
 
@@ -27,7 +28,7 @@ module Dorsum
       line
     end
 
-    def puts(data)
+    def puts(data : String)
       line = data.strip
       Log.debug { "> #{line}" }
       socket.puts line
