@@ -11,8 +11,11 @@ module Dorsum
         HolidayPresent
         PokGengar
         runSadCat
+        Peepo
+        jesusBeBallin
         CHEESED
         GruW
+        ->
         🤖
         🥫
       ]
