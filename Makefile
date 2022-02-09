@@ -6,6 +6,12 @@ dorsum: main.cr src/**/*.cr
 	@strip dorsum
 	@du -sh dorsum
 
+release: main.cr src/**/*.cr
+	shards
+	crystal build --release -o dorsum main.cr
+	@strip dorsum
+	@du -sh dorsum
+
 clean:
 	rm -rf .crystal dorsum .deps .shards libs lib *.dwarf build
 
