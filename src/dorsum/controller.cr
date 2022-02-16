@@ -18,6 +18,7 @@ module Dorsum
       broadcaster_id = api.broadcaster_id(context.channel)
       exit unless broadcaster_id
       title = Dorsum::Commands::Title.new(client, api, broadcaster_id)
+      gnome = Dorsum::Commands::Gnome.new(client)
 
       loop do
         begin
@@ -51,6 +52,7 @@ module Dorsum
           when "PRIVMSG"
             # hype.run(message)
             title.run(message)
+            gnome.run(message)
           when "RECONNECT"
             Log.warn { "Server asked us to reconnect" }
             return
