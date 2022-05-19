@@ -7,17 +7,13 @@ module Dorsum
       COOLDOWN = Time::Span.new(seconds: 90)
       MOTES    = %w[
         MrDestructoid
-        FeelsAmazingMan
-        HolidayPresent
-        PokGengar
+        tomatoSick
+        tomatoCozy
+        tomatoArise
+        tomatoBusiness
         runSadCat
         Peepo
-        jesusBeBallin
-        CHEESED
-        GruW
         ->
-        🤖
-        🥫
       ]
 
       getter client : Dorsum::Connection
