@@ -6,14 +6,14 @@ module Dorsum
     class Title
       COOLDOWN = Time::Span.new(seconds: 90)
       MOTES    = %w[
-        MrDestructoid
-        tomatoSick
-        tomatoCozy
+        ->
+        Bedge
+        Peepo
+        Wokege
+        runSadCat
         tomatoArise
         tomatoBusiness
-        runSadCat
-        Peepo
-        ->
+        tomatoCozy
       ]
 
       getter client : Dorsum::Connection
