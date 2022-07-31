@@ -4,7 +4,7 @@ require "time"
 module Dorsum
   module Commands
     class Title
-      COOLDOWN = Time::Span.new(seconds: 90)
+      COOLDOWN = Time::Span.new(seconds: 30)
       MOTES    = %w[
         ->
         Bedge
