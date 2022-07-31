@@ -37,7 +37,7 @@ module Dorsum
       client = Dorsum::Client.new
       client.connect
       Dorsum::Controller.new(client, api, config, context).run
-    rescue e : IO::TimeoutError
+    rescue e : IO::TimeoutError | Dorsum::TimeoutError
       Log.warn { e.message }
     end
 

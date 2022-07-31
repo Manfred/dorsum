@@ -13,7 +13,8 @@ module Dorsum
     def run
       # hype = Dorsum::Commands::Hype.new(client)
       ping = Dorsum::Commands::Ping.new(client)
-      Dorsum::Commands::Authenticate.new(client, config).run
+      authenticate = Dorsum::Commands::Authenticate.new(client, config)
+      authenticate.start
 
       broadcaster_id = api.broadcaster_id(context.channel)
       exit unless broadcaster_id
@@ -23,10 +24,12 @@ module Dorsum
       loop do
         begin
           line = client.gets
+          authenticate.test
         rescue e : IO::TimeoutError
           ping.run
         end
         if line
+          authenticate.finish
           message = Message.new(line)
           case message.command
           when "001"
