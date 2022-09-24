@@ -23,6 +23,10 @@ module Dorsum
 
           mote = MOTES.sample
           client.puts("PRIVMSG #{message.arguments} :@#{message.display_name} #{mote}")
+        elsif content.starts_with?("!sus")
+          return if cooldown?
+
+          client.puts("PRIVMSG #{message.arguments} :@#{message.display_name} amogus")
         end
       end
 
