@@ -8,7 +8,7 @@ module Dorsum
       MOTES    = %w[
         ->
         Bedge
-        Peepo
+        peepoNerd
         Wokege
         runSadCat
         tomatoArise
