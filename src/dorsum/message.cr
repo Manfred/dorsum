@@ -31,6 +31,10 @@ module Dorsum
       @message = groups["message"]
     end
 
+    def login
+      parsed_annotations["login"]
+    end
+
     def display_name
       parsed_annotations["display-name"]
     end

@@ -1,13 +1,14 @@
 all: dorsum
 
-dorsum: main.cr src/**/*.cr
+lib:
 	shards
+
+dorsum: lib main.cr src/**/*.cr
 	crystal build --error-trace -o dorsum main.cr
 	@strip dorsum
 	@du -sh dorsum
 
-release: main.cr src/**/*.cr
-	shards
+release: lib main.cr src/**/*.cr
 	crystal build --release -o dorsum main.cr
 	@strip dorsum
 	@du -sh dorsum

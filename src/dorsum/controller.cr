@@ -59,6 +59,11 @@ module Dorsum
           when "RECONNECT"
             Log.warn { "Server asked us to reconnect" }
             return
+          when "CLEARMSG"
+            Log.info do
+              content = message.message ? ": #{message.message}" : ""
+              "࿏ \e[38;5;65m#{message.login}\e[0m#{content}\e[0m"
+            end
           when "ROOMSTATE"
           when "USERSTATE"
           when "USERNOTICE"
