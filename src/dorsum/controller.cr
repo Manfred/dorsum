@@ -85,8 +85,7 @@ module Dorsum
         title.as(Dorsum::Commands::Title).run(message) if title
       when "RECONNECT"
         Log.warn { "Server asked us to reconnect" }
-        # It's not very elegant, but let's rely on systemd to restart.
-        exit
+        raise ReconnectError.new("Server asked us to reconnect")
       when "CLEARMSG"
         Log.info do
           content = message.message ? ": #{message.message}" : ""

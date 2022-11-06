@@ -39,6 +39,8 @@ module Dorsum
       Dorsum::Controller.new(client, api, config, context).run
     rescue e : IO::TimeoutError | Dorsum::TimeoutError
       Log.warn { e.message }
+    rescue e : ReconnectError
+      Log.warn { "Reconnecting…" }
     end
 
     private def print_errors
