@@ -46,6 +46,7 @@ module Dorsum
     def listen(broadcaster_id)
       title = Dorsum::Commands::Title.new(client, api, broadcaster_id)
       loop do
+        ping.run
         begin
           line = client.gets
         rescue e : IO::TimeoutError
@@ -81,6 +82,7 @@ module Dorsum
       when "PING"
         client.puts("PONG #{message.message}")
       when "PONG"
+        Log.debug { "PONG" }
       when "PRIVMSG"
         title.as(Dorsum::Commands::Title).run(message) if title
       when "RECONNECT"

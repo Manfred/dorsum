@@ -4,7 +4,7 @@ require "time"
 module Dorsum
   module Commands
     class Ping
-      THRESHOLD = Time::Span.new(seconds: 30)
+      THRESHOLD = Time::Span.new(seconds: 60)
 
       getter client : Dorsum::Client
 
